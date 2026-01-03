@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2025!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --deep-gold: #B8860B;
+            --champagne: #F7E7CE;
+            --midnight: #0A0E27;
+            --deep-blue: #1A1F3A;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #9D50BB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-blue) 50%, #2A1A4A 100%);
+            color: var(--champagne);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated background stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Fireworks particles */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Decorative top element */
+        .ornament-top {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            opacity: 0;
+            animation: fadeInDown 1s ease-out 0.3s forwards;
+        }
+
+        .ornament-top::before,
+        .ornament-top::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(45deg, var(--gold), var(--accent-pink));
+            border-radius: 50%;
+        }
+
+        .ornament-top::before {
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        .ornament-top::after {
+            width: 100px;
+            height: 2px;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Main heading */
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 12vw, 9rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--champagne) 50%, var(--gold) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite, scaleIn 1s ease-out;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 80px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Year styling */
+        .year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple), var(--gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 4s ease infinite, popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s backwards;
+            margin: 2rem 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .year::before {
+            content: '2025';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.5;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-5deg);
+            }
+            70% {
+                transform: scale(1.1) rotate(2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* Subtitle message */
+        .message {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--champagne);
+            margin: 2rem auto;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* Decorative elements */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            opacity: 0;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Champagne glasses decoration */
+        .glasses {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(3rem, 8vw, 6rem);
+            opacity: 0;
+            animation: slideUp 1s ease-out 1.5s forwards;
+            filter: drop-shadow(0 10px 30px rgba(255, 215, 0, 0.3));
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .clink {
+            display: inline-block;
+            animation: clink 2s ease-in-out 2s infinite;
+        }
+
+        @keyframes clink {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* Sparkle effects */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .sparkle::before,
+        .sparkle::after {
+            content: '✨';
+            position: absolute;
+            font-size: 20px;
+            animation: sparkleFloat 2s ease-in-out infinite;
+        }
+
+        .sparkle::after {
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scale(1);
+            }
+        }
+
+        /* Glow effect on hover */
+        .container:hover .main-title {
+            animation: shimmer 1.5s ease-in-out infinite, scaleIn 1s ease-out, glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .ornament-top {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .message {
+                padding: 0 1rem;
+            }
+
+            .glasses {
+                bottom: 2rem;
+            }
+        }
+
+        /* New elements glow */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+            opacity: 0.3;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-pink);
+            top: 10%;
+            left: -10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-purple);
+            bottom: -10%;
+            right: -10%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            top: 50%;
+            right: 10%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Glowing orbs background -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Confetti -->
+    <div class="confetti-container" id="confetti"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="ornament-top"></div>
+        
+        <h1 class="main-title">Happy New Year</h1>
+        <div class="year">2025</div>
+        
+        <p class="message">
+            May this year bring you <span class="highlight">joy, prosperity,</span> and unforgettable moments. 
+            Here's to new beginnings, <span class="highlight">endless possibilities,</span> 
+            and a year filled with <span class="highlight">love and laughter!</span>
+        </p>
+
+        <div class="glasses">
+            <span class="clink">🥂</span>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Create confetti
+        const confettiContainer = document.getElementById('confetti');
+        const colors = ['#FFD700', '#FF6B9D', '#9D50BB', '#F7E7CE', '#00F5FF'];
+        
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            confettiContainer.appendChild(confetti);
+        }
+
+        // Fireworks effect on click
+        document.body.addEventListener('click', (e) => {
+            createFirework(e.clientX, e.clientY);
+        });
+
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF6B9D', '#9D50BB', '#00F5FF', '#F7E7CE'];
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.animation = 'explode 1s ease-out forwards';
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        // Create sparkles randomly
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+        }, 3000);
+
+        // Auto fireworks
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createFirework(x, y);
+        }, 2000);
+    </script>
+</body>
+</html>
